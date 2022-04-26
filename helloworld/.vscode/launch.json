@@ -1,0 +1,5 @@
+{
+  "type": "node",
+  "request": "launch",
+  "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v16.14.2/bin/node"
+}
