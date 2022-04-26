@@ -1,5 +1,5 @@
-import { CatsController } from "./cats.controller";
-import { ICreateCatDto } from "./create-cat.dto";
+import { CatsController } from "../src/modules/cats/cats.controller";
+import { ICreateCatDto } from "../src/modules/cats/create-cat.dto";
 
 describe('CatsController', () => {
   let catsController: CatsController
