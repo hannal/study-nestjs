@@ -1,4 +1,5 @@
 import { CatsController } from "./cats.controller";
+import { ICreateCatDto } from "./create-cat.dto";
 
 describe('CatsController', () => {
   let catsController: CatsController
@@ -7,8 +8,23 @@ describe('CatsController', () => {
     catsController = new CatsController();
   });
 
-  it('', async () => {
-    const result = 'hello'
-    expect(await catsController.findAll()).toBe(result)
+  it('findAll()', async () => {
+    const expected = ['hello']
+    const result = await catsController.findAll()
+    expect(Array.isArray(result)).toBeTruthy()
+    expect(new Set(result)).toEqual(new Set(expected))
+  })
+
+  it('create()', async () => {
+    const payload = {
+      name: 'doggy',
+    }
+    const expected = `aka ${payload.name}`
+    expect(await catsController.create(payload)).toMatch(expected)
+  })
+
+  it('findOne()', async () => {
+    const expected = '#1 cat'
+    expect(await catsController.findOne('1')).toBe(expected)
   })
 });
