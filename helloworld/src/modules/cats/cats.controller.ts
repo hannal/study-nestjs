@@ -6,26 +6,26 @@ import {
   HttpStatus,
   Param,
   Post,
-} from '@nestjs/common';
-import { ICreateCatDto } from './create-cat.dto';
+} from '@nestjs/common'
+import { ICreateCatDto } from './create-cat.dto'
 
 @Controller('cats')
 export class CatsController {
   @Get()
   @HttpCode(HttpStatus.OK)
   async findAll(): Promise<string[]> {
-    return ['hello'];
+    return ['hello']
   }
 
   @Get(':id')
   @HttpCode(HttpStatus.OK)
   findOne(@Param('id') id: string): string {
-    return `#${id} cat`;
+    return `#${id} cat`
   }
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
   create(@Body() data: ICreateCatDto): string {
-    return `create a new cat aka ${data.name}`;
+    return `create a new cat aka ${data.name}`
   }
 }
