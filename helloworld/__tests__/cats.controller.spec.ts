@@ -48,6 +48,6 @@ describe('CatsController', () => {
 
   it('findOne()', async () => {
     const expected = '#1 cat'
-    expect(await catsController.findOne('1')).toBe(expected)
+    expect(await catsController.findOne(1)).toBe(expected)
   })
 })

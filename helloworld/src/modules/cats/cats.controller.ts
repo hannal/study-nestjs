@@ -5,6 +5,7 @@ import {
   HttpCode,
   HttpStatus,
   Param,
+  ParseIntPipe,
   Post,
   Scope,
 } from '@nestjs/common'
@@ -27,9 +28,10 @@ export class CatsController {
     return this.catsService.findAll(predicate)
   }
 
+  // https://docs.nestjs.com/pipes
   @Get(':id')
   @HttpCode(HttpStatus.OK)
-  findOne(@Param('id') id: string): string {
+  findOne(@Param('id', ParseIntPipe) id: number): string {
     return `#${id} cat`
   }
 
