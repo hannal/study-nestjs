@@ -1,7 +1,7 @@
 import { Injectable, Scope } from '@nestjs/common'
 import { Cat } from './interfaces/cat.interface'
 
-  // https://docs.nestjs.com/fundamentals/injection-scopes
+// https://docs.nestjs.com/fundamentals/injection-scopes
 @Injectable({ scope: Scope.DEFAULT })
 export class CatsService {
   private readonly cats: Cat[] = []

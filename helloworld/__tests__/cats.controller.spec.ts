@@ -20,7 +20,7 @@ describe('CatsController', () => {
           name: 'kitt-y',
           age: 1,
           breed: 'korshot',
-        }
+        },
       ]
       jest.spyOn(catsService, 'findAll').mockImplementation(() => expected)
 
@@ -39,7 +39,9 @@ describe('CatsController', () => {
       }
 
       await catsController.create(payload)
-      const result = await catsController.findAll((o: Cat) => isEqual(o, payload))
+      const result = await catsController.findAll((o: Cat) =>
+        isEqual(o, payload),
+      )
       expect(result.length).not.toBe(0)
     })
   })
