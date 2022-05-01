@@ -6,15 +6,25 @@ import {
   HttpStatus,
   Param,
   Post,
+  Scope,
 } from '@nestjs/common'
-import { ICreateCatDto } from './create-cat.dto'
 
-@Controller('cats')
+import { ICreateCatDto } from './dto/create-cat.dto'
+import { CatsService } from './cats.service'
+import { Cat } from './interfaces/cat.interface'
+
+// https://docs.nestjs.com/fundamentals/injection-scopes#controller-scope
+@Controller({
+  path: 'cats',
+  scope: Scope.REQUEST,
+})
 export class CatsController {
+  constructor(private catsService: CatsService) {}
+
   @Get()
   @HttpCode(HttpStatus.OK)
-  async findAll(): Promise<string[]> {
-    return ['hello']
+  async findAll(predicate?: (item: Cat) => boolean): Promise<Cat[]> {
+    return this.catsService.findAll(predicate)
   }
 
   @Get(':id')
@@ -25,7 +35,7 @@ export class CatsController {
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  create(@Body() data: ICreateCatDto): string {
-    return `create a new cat aka ${data.name}`
+  async create(@Body() data: ICreateCatDto) {
+    this.catsService.create(data)
   }
 }
